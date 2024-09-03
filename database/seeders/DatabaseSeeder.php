@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+
+use Spatie\Permission\Models\Role;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,5 +25,24 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin')
         ]);
+        
+
+       $roles=[
+            [
+                'name' => 'admin'
+            ],
+            [
+                'name' => 'donar'
+            ],
+            [
+                    'name' => 'paitent'
+            ]
+       ];
+
+       foreach($roles as $row)
+       {
+            Role::create($row);
+       }
     }
+
 }
