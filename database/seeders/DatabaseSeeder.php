@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
        {
             Role::create($row);
        }
+
+       $this->call(BloodGroupSeeder::class);
     }
 
 }
