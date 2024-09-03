@@ -22,3 +22,5 @@ Route::post('/store', [AuthController::class, 'store'])->name('home.store');
 Route::get('/forget_password',[AuthController::class, 'forget_password'])->name('home.forget_password');
 
 Route::get('/reset_password', [AuthController::class, 'reset_password'])->name('home.reset_password');
+
+Route::get('/role', [AuthController::class, 'role'])->name('home.role');
