@@ -45,6 +45,11 @@ class AuthController extends Controller
         
     }
 
+    public function profile(Request $request)
+    {
+        return view('frontend/auth/profile');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
