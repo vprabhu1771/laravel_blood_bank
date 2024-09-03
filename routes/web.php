@@ -19,6 +19,8 @@ Route::get('/register', [AuthController::class, 'register'])->name('home.registe
 
 Route::post('/store', [AuthController::class, 'store'])->name('home.store');
 
+Route::get('/profile',[AuthController::class, 'profile'])->name('home.profile');
+
 Route::get('/forget_password',[AuthController::class, 'forget_password'])->name('home.forget_password');
 
 Route::get('/reset_password', [AuthController::class, 'reset_password'])->name('home.reset_password');
