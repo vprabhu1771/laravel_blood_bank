@@ -9,4 +9,16 @@ Route::get('/', function () {
 
 use App\Http\Controllers\AuthController;
 
+Route::get('/login', [AuthController::class, 'login'])->name('home.login');
+
+Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/register', [AuthController::class, 'register'])->name('home.register');
+
+Route::post('/store', [AuthController::class, 'store'])->name('home.store');
+
 Route::get('/forget_password',[AuthController::class, 'forget_password'])->name('home.forget_password');
+
+Route::get('/reset_password', [AuthController::class, 'reset_password'])->name('home.reset_password');
