@@ -41,6 +41,7 @@ class BloodGroupResource extends Resource
                     ->searchable(),
                 Tables\Columns\SelectColumn::make('status')
                     ->options(BloodGroupStatus::class)
+                    ->default(BloodGroupStatus::AVAILABLE)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
