@@ -28,7 +28,8 @@ class BloodGroupResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required(),
                 Forms\Components\Select::make('status')
-                    ->options(BloodGroupStatus::class),
+                    ->options(BloodGroupStatus::class)
+                    ->default(BloodGroupStatus::AVAILABLE),
             ]);
     }
 
