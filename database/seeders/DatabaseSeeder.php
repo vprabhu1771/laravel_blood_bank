@@ -44,9 +44,12 @@ class DatabaseSeeder extends Seeder
             Role::create($row);
        }
 
+
        $this->call(CountrySeeder::class);
        $this->call(StateSeeder::class);
        $this->call(CitySeeder::class);
+       $this->call(BloodGroupSeeder::class);
+
     }
 
 }

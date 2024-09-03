@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('blood_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('status')->default(BloodGroupStatus::class);
+            $table->string('status')->default(BloodGroupStatus::AVAILABLE);
             $table->timestamps();
         });
     }
