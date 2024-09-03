@@ -16,7 +16,7 @@ class CitySeeder extends Seeder
     public function run(): void
     {
         // Find a country by name
-        $state = State::where('name', 'tamil nadu')->first();
+        $state = State::where('name', 'Tamil Nadu')->first();
 
         // You can add more cities as needed
         $cities = [
