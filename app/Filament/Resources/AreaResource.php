@@ -23,7 +23,7 @@ class AreaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('district_id')
+                Forms\Components\Select::make('district_id')
                     ->relationship('district','name'),
                 Forms\Components\TextInput::make('name')
                     ->required(),
