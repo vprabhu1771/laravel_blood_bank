@@ -6,6 +6,7 @@ window.onload = function()
     fetch_password();
     fetch_dob();
     fetch_phone();
+    fetch_address();
     fetch_pincode();
 }
 
@@ -153,6 +154,14 @@ function fetch_phone()
         }
     });
 }
+
+function fetch_address()
+{
+    $('#address').on('input', function() {
+        $(this).val($(this).val().toUpperCase());
+    });
+}
+
 function fetch_pincode()
 {
     const pincode = document.getElementById('pincode');
