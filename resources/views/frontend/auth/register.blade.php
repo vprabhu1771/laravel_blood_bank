@@ -70,6 +70,7 @@
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
                                     <input type="text" class="form-control" required name="phone" id="phone" placeholder="Phone">
+                                    <div id="phoneError" class="text-danger mt-2"></div>
                                 </div>
 
                                 <div class="form-group">

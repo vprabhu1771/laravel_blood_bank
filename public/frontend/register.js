@@ -5,6 +5,7 @@ window.onload = function()
     fetch_email();
     fetch_password();
     fetch_dob();
+    fetch_phone();
     fetch_pincode();
 }
 
@@ -105,6 +106,50 @@ function fetch_dob()
         } else {
             $(this).removeClass('is-valid').addClass('is-invalid');
             $('#dobError').text('You must be at least 18 years old');
+        }
+    });
+}
+
+function fetch_phone()
+{
+    $('#phone').on('input', function() {
+        var phone = $(this).val();
+        var phoneRegex = /^\d{10}$/;
+
+         // Ensure input is numeric and limit length to 10 digits
+         phone = phone.replace(/[^0-9]/g, '').slice(0, 10);
+         $(this).val(phone);
+
+        if (phoneRegex.test(phone)) {
+            $(this).removeClass('is-invalid').addClass('is-valid');
+            $('#phoneError').text('');
+
+            // AJAX request to check phone number availability
+            $.ajax({
+                url: '/check-phone', // Your API endpoint
+                method: 'GET',
+                data: { phone: phone },
+                success: function(response) {
+                    // Phone number is available
+                    $('#phoneError').text('');
+                    $('#phone').removeClass('is-invalid').addClass('is-valid');
+                },
+                error: function(xhr) {
+                    // Phone number is not available
+                    if (xhr.status === 409) {
+                        $('#phoneError').text('Phone number is already taken');
+                        $('#phone').removeClass('is-valid').addClass('is-invalid');
+                    } else {
+                        // Handle other errors
+                        $('#phoneError').text('An error occurred. Please try again.');
+                        $('#phone').removeClass('is-valid').addClass('is-invalid');
+                    }
+                }
+            });
+        } else {
+            // Phone number is invalid
+            $(this).removeClass('is-valid').addClass('is-invalid');
+            $('#phoneError').text('Please enter a 10-digit phone number');
         }
     });
 }
