@@ -25,8 +25,8 @@ class CityResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\TextInput::make('state_id')
-                    ->numeric(),
+                Forms\Components\Select::make('district_id')
+                    ->relationship('district','name'),
             ]);
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('state_id')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
             $table->timestamps();
         });
     }
