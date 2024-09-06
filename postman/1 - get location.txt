@@ -1,0 +1,9 @@
+GET -> http://127.0.0.1:8000/get-location?pincode=607001
+
+{
+    "area": "manjakuppam",
+    "district": "cuddalore",
+    "city": "Cuddalore",
+    "state": "Tamil Nadu",
+    "country": "India"
+}
