@@ -27,6 +27,22 @@ class AuthController extends Controller
         }
     }
 
+    public function checkPhone(Request $request)
+    {
+        $phone = $request->get('phone');
+
+        // Check if phone number is already in use
+        $exists = User::where('phone', $phone)->exists();
+
+        if ($exists) {
+            // Return 409 Conflict if phone number is already taken
+            return response()->json(['error' => 'Phone number is already taken'], 409);
+        } else {
+            // Return 200 OK if phone number is available
+            return response()->json(['message' => 'Phone number is available']);
+        }
+    }
+
     public function getLocation(Request $request)
     {
         $pincode = $request->get('pincode');
