@@ -160,7 +160,11 @@ function fetch_pincode()
     pincode.addEventListener('input',function(e){
         console.log(e.target.value);
 
-        const pincodeValue = e.target.value;
+        let pincodeValue = e.target.value;
+
+        // Replace non-digit characters and limit to 6 digits
+        pincodeValue = pincodeValue.replace(/[^0-9]/g, '').slice(0, 6);
+        e.target.value = pincodeValue;
         
         // Only send the request if pincode has 6 digits
         if (pincodeValue.length === 6) {
