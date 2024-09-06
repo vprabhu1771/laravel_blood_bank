@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class City extends Model
+class District extends Model
 {
     use HasFactory;
 
     protected $fillable = [
 
-        'name',
+        'state_id',
+        'name'
 
-        'district_id'
     ];
 
-    public function district()
+    public function state()
     {
-        return $this->belongsTo(District::class, 'district_id');
+        return $this->belongsTo(State::class, 'state_id');
     }
 }

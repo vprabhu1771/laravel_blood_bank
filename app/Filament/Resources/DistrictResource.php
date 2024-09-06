@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CityResource\Pages;
-use App\Filament\Resources\CityResource\RelationManagers;
-use App\Models\City;
+use App\Filament\Resources\DistrictResource\Pages;
+use App\Filament\Resources\DistrictResource\RelationManagers;
+use App\Models\District;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CityResource extends Resource
+class DistrictResource extends Resource
 {
-    protected static ?string $model = City::class;
+    protected static ?string $model = District::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,10 +23,10 @@ class CityResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('state_id')
+                    ->relationship('state','name'),
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\Select::make('district_id')
-                    ->relationship('district','name'),
             ]);
     }
 
@@ -34,11 +34,11 @@ class CityResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('state_id')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -71,9 +71,9 @@ class CityResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCities::route('/'),
-            'create' => Pages\CreateCity::route('/create'),
-            'edit' => Pages\EditCity::route('/{record}/edit'),
+            'index' => Pages\ListDistricts::route('/'),
+            'create' => Pages\CreateDistrict::route('/create'),
+            'edit' => Pages\EditDistrict::route('/{record}/edit'),
         ];
     }
 }

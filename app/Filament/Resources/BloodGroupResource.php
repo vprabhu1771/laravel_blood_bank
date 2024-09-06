@@ -28,7 +28,8 @@ class BloodGroupResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required(),
                 Forms\Components\Select::make('status')
-                    ->options(BloodGroupStatus::class),
+                    ->options(BloodGroupStatus::class)
+                    ->default(BloodGroupStatus::AVAILABLE),
             ]);
     }
 
@@ -40,6 +41,7 @@ class BloodGroupResource extends Resource
                     ->searchable(),
                 Tables\Columns\SelectColumn::make('status')
                     ->options(BloodGroupStatus::class)
+                    ->default(BloodGroupStatus::AVAILABLE)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
