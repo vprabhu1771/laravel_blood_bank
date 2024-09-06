@@ -21,6 +21,13 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'register'])->name('home.register');
 
+
+use App\Http\Controllers\api\v1\AuthController as API;
+
+Route::get('/get-location', [API::class, 'getLocation']);
+
+
+
 Route::post('/store', [AuthController::class, 'store'])->name('home.store');
 
 Route::get('/profile',[AuthController::class, 'profile'])->name('home.profile');
