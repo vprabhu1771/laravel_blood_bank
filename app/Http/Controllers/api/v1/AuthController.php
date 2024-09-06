@@ -4,42 +4,37 @@ namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-use App\Models\Aera;
+use App\Models\Area;
 
 class AuthController extends Controller
 {
-    //
-
     public function getLocation(Request $request)
     {
         $pincode = $request->get('pincode');
 
-        $record = Aera::where('pincode', $pincode)->with('city.state.country')->first();
-        
-        // Simulate getting the data based on the pincode (this could be from a database or an external API)
-        // $city = 'Sample City';
-        // $state = 'Sample State';
-        // $country = 'Sample Country';
+        // Fetch area based on pincode and eager load the relationships
+        $record = Area::where('pincode', $pincode)
+            ->with(['district.city.state.country']) // Eager load related models
+            ->first();
 
-        // return response()->json([
-        //     'city' => $city,
-        //     'state' => $state,
-        //     'country' => $country,
-        // ]);
-
+        // Check if area was found
         if ($record) {
-            $state = $record->state;
+            $district = $record->district;
+            $city = $district->city;
+            $state = $city->state;
             $country = $state->country;
 
+            // Return the location details in JSON format
             return response()->json([
-                'city' => $city,
-                'state' => $state,
-                'country' => $country,
+                'area' => $record->name,
+                'district' => $district->name,
+                'city' => $city->name,
+                'state' => $state->name,
+                'country' => $country->name,
             ]);
         } else {
-            return response()->json(['error' => 'pincode not found'], 404);
+            // If pincode is not found, return a 404 response
+            return response()->json(['error' => 'Pincode not found'], 404);
         }
     }
-
 }
