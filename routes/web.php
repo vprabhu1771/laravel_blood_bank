@@ -26,6 +26,8 @@ use App\Http\Controllers\api\v1\AuthController as API;
 
 Route::get('/get-location', [API::class, 'getLocation']);
 
+Route::get('/check-email', [API::class, 'checkEmailAvailability']);
+
 
 
 Route::post('/store', [AuthController::class, 'store'])->name('home.store');
