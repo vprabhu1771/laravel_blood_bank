@@ -50,6 +50,7 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" required name="email" id="email" placeholder="Email">
+                                    <div id="emailError" class="text-danger mt-2"></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
@@ -58,6 +59,7 @@
                                 <div class="form-group">
                                     <label for="confirmPassword">Confirm Password</label>
                                     <input type="password" class="form-control" required name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+                                    <div id="passwordError" class="text-danger mt-2"></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dob">Date of Birth</label>
