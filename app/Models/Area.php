@@ -14,7 +14,9 @@ class Area extends Model
 
         'district_id',
 
-        'name'
+        'name',
+
+        'pincode'
     ];
 
     public function district(){
