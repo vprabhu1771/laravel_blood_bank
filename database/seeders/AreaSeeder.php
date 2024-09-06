@@ -48,6 +48,7 @@ class AreaSeeder extends Seeder
             Area::insert([
                 'district_id' => $areaData[0],  // foreign key for district
                 'name' => $areaData[1],         // area name
+                'pincode' =>$areaData[2],
             ]);
         }
     }
