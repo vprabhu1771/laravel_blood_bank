@@ -22,4 +22,10 @@ class District extends Model
     {
         return $this->belongsTo(City::class, 'city_id');
     }
+
+    // Relationship with Area
+    public function areas()
+    {
+        return $this->hasMany(Area::class);
+    }
 }
