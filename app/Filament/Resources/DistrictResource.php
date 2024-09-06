@@ -23,8 +23,8 @@ class DistrictResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('state_id')
-                    ->relationship('state','name'),
+                Forms\Components\Select::make('city_id')
+                    ->relationship('city','name'),
                 Forms\Components\TextInput::make('name')
                     ->required(),
             ]);
