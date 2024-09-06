@@ -4,6 +4,7 @@ window.onload = function()
     fetch_name();
     fetch_email();
     fetch_password();
+    fetch_dob();
     fetch_pincode();
 }
 
@@ -85,6 +86,28 @@ function fetch_password()
     });
 }
 
+function fetch_dob()
+{
+    $('#dob').on('change', function() {
+        var dob = new Date($(this).val());
+        var today = new Date();
+        var age = today.getFullYear() - dob.getFullYear();
+        var monthDifference = today.getMonth() - dob.getMonth();
+
+        // Adjust age if the birthday has not occurred yet this year
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dob.getDate())) {
+            age--;
+        }
+
+        if (age >= 18) {
+            $(this).removeClass('is-invalid').addClass('is-valid');
+            $('#dobError').text('');
+        } else {
+            $(this).removeClass('is-valid').addClass('is-invalid');
+            $('#dobError').text('You must be at least 18 years old');
+        }
+    });
+}
 function fetch_pincode()
 {
     const pincode = document.getElementById('pincode');

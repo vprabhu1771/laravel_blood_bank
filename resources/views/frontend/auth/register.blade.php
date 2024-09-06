@@ -64,6 +64,7 @@
                                 <div class="form-group">
                                     <label for="dob">Date of Birth</label>
                                     <input type="date" class="form-control" required name="dob" id="dob">
+                                    <div id="dobError" class="text-danger mt-2"></div>
                                 </div>
 
                                 <div class="form-group">
