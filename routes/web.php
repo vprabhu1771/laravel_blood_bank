@@ -28,6 +28,8 @@ Route::get('/get-location', [API::class, 'getLocation']);
 
 Route::get('/check-email', [API::class, 'checkEmailAvailability']);
 
+Route::get('/check-phone', [API::class, 'checkPhone']);
+
 
 
 Route::post('/store', [AuthController::class, 'store'])->name('home.store');
