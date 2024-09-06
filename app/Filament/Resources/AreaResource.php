@@ -24,8 +24,7 @@ class AreaResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('district_id')
-                    ->relationship('district','name')
-                    ->numeric(),
+                    ->relationship('district','name'),
                 Forms\Components\TextInput::make('name')
                     ->required(),
                 Forms\Components\TextInput::make('pincode'),
@@ -36,7 +35,10 @@ class AreaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('district_id')
+                Tables\Columns\TextColumn::make('id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('district.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')

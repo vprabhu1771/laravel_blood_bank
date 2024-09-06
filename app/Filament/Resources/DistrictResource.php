@@ -34,7 +34,10 @@ class DistrictResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('state_id')
+                Tables\Columns\TextColumn::make('id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('city.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
