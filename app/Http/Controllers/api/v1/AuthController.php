@@ -4,10 +4,29 @@ namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Models\User;
 use App\Models\Area;
 
 class AuthController extends Controller
 {
+
+    public function checkEmailAvailability(Request $request)
+    {
+        $email = $request->get('email');
+
+        // Check if the email exists in the users table
+        $emailExists = User::where('email', $email)->exists();
+
+        if ($emailExists) {
+            // If email is already taken, return a 409 response (Conflict)
+            return response()->json(['message' => 'Email is already taken'], 409);
+        } else {
+            // If email is available, return a success response
+            return response()->json(['message' => 'Email is available'], 200);
+        }
+    }
+
     public function getLocation(Request $request)
     {
         $pincode = $request->get('pincode');
