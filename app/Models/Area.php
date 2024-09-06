@@ -12,13 +12,13 @@ class Area extends Model
 
     protected $fillable = [
 
-        'city_id',
+        'district_id',
 
         'name'
     ];
 
-    public function city(){
+    public function district(){
 
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->belongsTo(District::class, 'district_id');
     }
 }

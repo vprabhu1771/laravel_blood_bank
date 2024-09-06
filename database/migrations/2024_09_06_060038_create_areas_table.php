@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('district_id');
             $table->string('name');
+            $table->string('pincode')->nullable();
             $table->timestamps();
         });
     }

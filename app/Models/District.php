@@ -13,13 +13,13 @@ class District extends Model
 
     protected $fillable = [
 
-        'state_id',
+        'city_id',
         'name'
 
     ];
 
-    public function state()
+    public function city()
     {
-        return $this->belongsTo(State::class, 'state_id');
+        return $this->belongsTo(State::class, 'city_id');
     }
 }
