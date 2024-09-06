@@ -15,10 +15,10 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        // Find a country by name
+        // Find a state by name
         $state = State::where('name', 'Tamil Nadu')->first();
 
-        // You can add more cities as needed
+        // Sorted districts (cities)
         $cities = [
             [$state->id, "Ariyalur"],
             [$state->id, "Chengalpattu"],
@@ -30,7 +30,34 @@ class CitySeeder extends Seeder
             [$state->id, "Erode"],
             [$state->id, "Kallakurichi"],
             [$state->id, "Kancheepuram"],
-            // Add more cities here
+            [$state->id, "Karur"],
+            [$state->id, "Krishnagiri"],
+            [$state->id, "Madurai"],
+            [$state->id, "Mayiladuthurai"],
+            [$state->id, "Nagapattinam"],
+            [$state->id, "Nagercoil"],
+            [$state->id, "Namakkal"],
+            [$state->id, "Perambalur"],
+            [$state->id, "Pudukkottai"],
+            [$state->id, "Ramanathapuram"],
+            [$state->id, "Ranipet"],
+            [$state->id, "Salem"],
+            [$state->id, "Sivagangai"],
+            [$state->id, "Tenkasi"],
+            [$state->id, "Thanjavur"],
+            [$state->id, "Theni"],
+            [$state->id, "Thiruvallur"],
+            [$state->id, "Thiruvarur"],
+            [$state->id, "Thoothukudi"],
+            [$state->id, "Tiruchirappalli"],
+            [$state->id, "Tirunelveli"],
+            [$state->id, "Tirupathur"],
+            [$state->id, "Tiruppur"],
+            [$state->id, "Tiruvannamalai"],
+            [$state->id, "Udagamandalam (Ootacamund)"],
+            [$state->id, "Vellore"],
+            [$state->id, "Viluppuram"],
+            [$state->id, "Virudhunagar"]
         ];
 
         // Insert data into the cities table        
@@ -38,7 +65,6 @@ class CitySeeder extends Seeder
             City::insert([
                 'state_id' => $citiesData[0],
                 'name' => $citiesData[1],
-                // 'code' => $stateData[2],
             ]);
         }
     }
