@@ -55,4 +55,18 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $casts = [
+        'is_donor' => 'boolean',
+    ];
+
+    public function requestsMade()
+    {
+        return $this->hasMany(BloodRequest::class, 'requester_id');
+    }
+
+    public function requestsReceived()
+    {
+        return $this->hasMany(BloodRequest::class, 'donor_id');
+    }
 }
