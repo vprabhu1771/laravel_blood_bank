@@ -8,6 +8,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Hash;
+use App\Filament\Resources\UserResource\Pages\CreateRecord;
+
 class UserForm
 {
     public static function configure(Schema $schema): Schema
@@ -22,8 +26,14 @@ class UserForm
                     ->required(),
                 DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
+                    ->nullable()
                     ->password()
-                    ->required(),
+                    ->revealable()                        
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn ($livewire) => ($livewire instanceof CreateRecord)),
+                    // ->rule(Password::default()),
+                    
                 TextInput::make('gender')
                     ->default(null),
                 TextInput::make('contact_no')
