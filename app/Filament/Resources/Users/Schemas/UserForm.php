@@ -44,7 +44,11 @@ class UserForm
                     TextInput::make('city')
                         ->default(null),
                     Toggle::make('is_donor')
-                        ->required(),
+                        ->default(false)
+                        // ->disabled(fn (callable $get) => ! in_array('Donor', $get('roles') ?? []))
+                        ->disabled(fn (callable $get) => ! in_array(3, $get('roles') ?? []))
+                        ->reactive(),
+                        // ->required(),
                     TextInput::make('blood_group')
                         ->default(null),
                     TextInput::make('firebase_uid')
@@ -65,6 +69,24 @@ class UserForm
                         ->multiple()
                         ->preload()
                         ->relationship('roles', 'name')
+                        ->reactive()
+                        ->afterStateUpdated(function ($state, callable $set) {
+
+                            // dd($state);
+
+                            // If donor role is removed, disable and reset toggle
+                            // if (! in_array('Donor', $state ?? [])) {
+                            //     $set('is_donor', false);
+                            // }
+                            
+                            if (! in_array(3, $state ?? [])) {
+                                $set('is_donor', false);
+                            }
+                            
+                            if (in_array(3, $state)) {
+                                $set('is_donor', true);
+                            }
+                        }),
                 ])                            
             ]);
     }
