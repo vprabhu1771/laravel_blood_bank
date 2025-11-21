@@ -6,6 +6,8 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Select;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 use Illuminate\Validation\Rules\Password;
@@ -18,37 +20,52 @@ class UserForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+
+                Section::make('User Details')
+                ->schema([
+                    TextInput::make('name')
                     ->required(),
-                TextInput::make('email')
-                    ->label('Email address')
-                    ->email()
-                    ->required(),
-                DateTimePicker::make('email_verified_at'),
-                TextInput::make('password')
-                    ->nullable()
-                    ->password()
-                    ->revealable()                        
-                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                    ->dehydrated(fn ($state) => filled($state))
-                    ->required(fn ($livewire) => ($livewire instanceof CreateRecord)),
-                    // ->rule(Password::default()),
-                    
-                TextInput::make('gender')
-                    ->default(null),
-                TextInput::make('contact_no')
-                    ->default(null),
-                Textarea::make('address')
-                    ->default(null)
-                    ->columnSpanFull(),
-                TextInput::make('city')
-                    ->default(null),
-                Toggle::make('is_donor')
-                    ->required(),
-                TextInput::make('blood_group')
-                    ->default(null),
-                TextInput::make('firebase_uid')
-                    ->default(null),
+                    TextInput::make('email')
+                        ->label('Email address')
+                        ->email()
+                        ->required(),
+                    DateTimePicker::make('email_verified_at'),                    
+                    Select::make('gender')
+                        ->options([
+                            'Male' => 'Male',
+                            'Female' => 'Female'
+                        ])
+                        ->default(null),
+                    TextInput::make('contact_no')
+                        ->default(null),
+                    Textarea::make('address')
+                        ->default(null)
+                        ->columnSpanFull(),
+                    TextInput::make('city')
+                        ->default(null),
+                    Toggle::make('is_donor')
+                        ->required(),
+                    TextInput::make('blood_group')
+                        ->default(null),
+                    TextInput::make('firebase_uid')
+                        ->default(null), 
+                ])->columnSpanFull(),                
+                Section::make('User New Password')->schema([
+                    TextInput::make('password')
+                        ->nullable()
+                        ->password()
+                        ->revealable()                        
+                        ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                        ->dehydrated(fn ($state) => filled($state))
+                        ->required(fn ($livewire) => ($livewire instanceof CreateRecord))                    
+                        ->rule(Password::default()),
+                ]),
+                Section::make('Role Management')->schema([
+                    Select::make('roles')
+                        ->multiple()
+                        ->preload()
+                        ->relationship('roles', 'name')
+                ])                            
             ]);
     }
 }
